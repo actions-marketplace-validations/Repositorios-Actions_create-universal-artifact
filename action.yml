@@ -1,22 +1,29 @@
-name: "Checkout GitLab"
+name: "Create Universal Artifact"
 description: | 
-  "Actions para hacer checkout de un repositorio GitLab solo se requiere usuario, contraseña y la url del repositorio."
+  "Actions para crear un directorio donde alojar los archivos requeridos para la construcción de un artefacto."
+# https://actions-cool.github.io/github-action-branding/
 branding:
-  icon: 'check-circle'
+  icon: 'package'
   color: 'white'
 inputs:
-  user_repo:
-    description: 'Usuario del repositorio'
+  work_dir:
+    description: 'Directorio del repositorio'
     required: true
-  pass_repo:
-    description: 'contraseña del repositorio'
+  artifact_name:
+    description: 'Nombre del artefacto'
     required: true
-  url_repo:
-    description: 'URL del repositorio'
-    required: true
+  run_numbe:
+    description: 'número de ejecución de workflow'
+    default: "false"
 runs:
   using: 'composite'
   steps:
     - run: |
-        git clone https://${{ inputs.user_repo }}:${{ inputs.pass_repo }}@${{ inputs.url_repo }}
+        if [ ${{ inputs.run_numbe }} -eq "false" ]
+        then
+          mkdir -p ${{ inputs.work_dir }}/${{ inputs.artifact_name }}
+        else
+          mkdir -p ${{ inputs.work_dir }}/${{ inputs.artifact_name }}${{ inputs.run_numbe }}
+        fi
+        cd ${{ inputs.work_dir }} && ls -l
       shell: bash
