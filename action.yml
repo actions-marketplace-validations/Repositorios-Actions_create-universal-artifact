@@ -17,4 +17,5 @@ runs:
   steps:
     - run: |
         mkdir -p ${{ inputs.work_dir }}/${{ inputs.artifact_name }}
+        cd ${{ inputs.work_dir }} && ls -l
       shell: bash
