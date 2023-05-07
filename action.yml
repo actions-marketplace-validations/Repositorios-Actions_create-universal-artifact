@@ -12,18 +12,9 @@ inputs:
   artifact_name:
     description: 'Nombre del artefacto'
     required: true
-  run_numbe:
-    description: 'número de ejecución de workflow'
-    default: ""
 runs:
   using: 'composite'
   steps:
     - run: |
-        if [ ${{ inputs.run_numbe }} -eq "false" ]
-        then
-          mkdir -p ${{ inputs.work_dir }}/${{ inputs.artifact_name }}
-        else
-          mkdir -p ${{ inputs.work_dir }}/${{ inputs.artifact_name }}${{ inputs.run_numbe }}
-        fi
-        cd ${{ inputs.work_dir }} && ls -l
+        mkdir -p ${{ inputs.work_dir }}/${{ inputs.artifact_name }}
       shell: bash
