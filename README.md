@@ -12,7 +12,7 @@ Se debe indicar con la etiqueta 'with' algunos parametros.
 
 1. Nombre del directorio principal (Repositorio).
 2. Nombre del artefacto.
-3. Concatenar 'github.run_numbe' ejemplo: 'proyect15' por defecto está 'false', indicar 'true' para habilitar.
+3. Concatenar variable de entorno "github.run_numbe", ejemplo: "proyect15" por defecto está "false", indicar "true" para habilitar.
 
 ## Instrucciones
 
